@@ -1,0 +1,22 @@
+version: "3.8"
+
+services:
+  frontend:
+    build: ./my-app
+    container_name: mern_frontend_jenkins
+    ports:
+      - "3001:3000"
+    volumes:
+      - ./my-app:/app
+    depends_on:
+      - backend
+
+  backend:
+    build: ./server
+    container_name: mern_backend_jenkins
+    ports:
+      - "5001:5000"
+    volumes:
+      - ./server:/app
+    environment:
+      - MONGO_URI=mongodb+srv://maryamtahir061:meenuu123@clusterweb.l6zg4.mongodb.net/
