@@ -9,7 +9,7 @@ pipeline {
     stages {
         stage('Cloning Repository') {
             steps {
-                git 'https://github.com/maryamtahirexe/assignmentpart2.git'
+                git url: 'https://github.com/maryamtahirexe/assignmentpart2.git', branch: 'main'
             }
         }
 
