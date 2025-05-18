@@ -7,7 +7,7 @@ import apartmentRouter from "./routes/apartments.js";
 import shopRouter from "./routes/shops.js"; 
 
 dotenv.config();
-//hello
+//hello000
 const app = express();
 
 app.use(express.json({ limit: "30mb", extended: true }));
