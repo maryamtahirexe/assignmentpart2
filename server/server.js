@@ -14,7 +14,7 @@ app.use(express.json({ limit: "30mb", extended: true }));
 app.use(express.urlencoded({ limit: "30mb", extended: true }));
 app.use(
   cors({
-    origin: ["http://54.159.57.46:3000","http://54.159.57.46:3001"],
+    origin: ["http://54.159.57.46:3001","http://54.159.57.46:3000"],
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE"],
   })
