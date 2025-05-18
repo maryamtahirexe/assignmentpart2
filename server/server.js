@@ -14,12 +14,18 @@ app.use(express.json({ limit: "30mb", extended: true }));
 app.use(express.urlencoded({ limit: "30mb", extended: true }));
 app.use(
   cors({
-    origin: "*", // ⚠️ Only for testing/demo, not safe for production
+    origin: (origin, callback) => {
+      if (!origin || origin.startsWith("http://54.159.57.46")) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
-
 
 app.use("/owner", ownerRouter);
 app.use("/apartments", apartmentRouter);       
