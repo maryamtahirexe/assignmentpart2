@@ -14,11 +14,23 @@ app.use(express.json({ limit: "30mb", extended: true }));
 app.use(express.urlencoded({ limit: "30mb", extended: true }));
 app.use(
   cors({
-    origin: ["http://54.159.57.46:3001","http://54.159.57.46:3000"],
+    origin: function (origin, callback) {
+      const allowedOrigins = [
+        "http://54.159.57.46:3000",
+        "http://54.159.57.46:3001",
+      ];
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
+
 
 
 app.use("/owner", ownerRouter);
